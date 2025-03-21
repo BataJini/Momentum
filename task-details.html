@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>დავალების დეტალები | Momentum</title>
+    <link rel="preload" href="https://fonts.gstatic.com/s/fredokaone/v13/k3kUo8kEI-tA1RRcTZGmTlHGCac.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://free.bboxtype.com/embedfonts/?family=FiraGO:400,500" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #FFFFFF;
+        }
+
+        .container {
+            position: relative;
+            width: 1920px;
+            height: 1550px;
+            background: #FFFFFF;
+        }
+
+        .task-details-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 26px;
+            position: absolute;
+            width: 715px;
+            min-height: 239px;
+            height: auto;
+            left: 121px;
+            top: 140px;
+        }
+
+        .task-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px 0px;
+            gap: 12px;
+            width: 715px;
+            min-height: 105px;
+            height: auto;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .task-badges {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0px;
+            gap: 18px;
+            width: 212px;
+            height: 32px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .priority-badge {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 4px 5px;
+            gap: 4px;
+            width: 106px;
+            height: 32px;
+            background: #FFFFFF;
+            border: 0.5px solid #FFBE0B;
+            border-radius: 3px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .priority-badge svg {
+            width: 18px;
+            height: 20px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .priority-badge span {
+            width: 74px;
+            height: 24px;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 150%;
+            color: #FFBE0B;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+        }
+
+        .department-badge {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 10px;
+            gap: 10px;
+            width: 88px;
+            height: 29px;
+            background: #FF66A8;
+            border-radius: 15px;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+        }
+
+        .department-badge {
+            width: 68px;
+            height: 19px;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: #FFFFFF;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .task-title {
+            width: 715px;
+            height: 41px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 34px;
+            line-height: 41px;
+            color: #212529;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+            margin: 0;
+        }
+
+        .task-description {
+            display: block;
+            width: 715px;
+            min-height: 108px;
+            height: auto;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 150%;
+            color: #000000;
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .task-details-section {
+            position: absolute;
+            width: 493px;
+            min-height: 277px;
+            height: auto;
+            left: 121px;
+            top: 442px;
+        }
+
+        .section-title {
+            font-family: 'FiraGO';
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 29px;
+            color: #2A2A2A;
+            margin-bottom: 18px;
+        }
+
+        .details-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .details-row {
+            display: flex;
+            align-items: center;
+            gap: 70px;
+            padding: 10px 0;
+        }
+
+        .details-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 164px;
+            font-family: 'FiraGO';
+            font-size: 16px;
+            color: #474747;
+        }
+
+        .details-value {
+            font-family: 'FiraGO';
+            font-size: 14px;
+            color: #0D0F10;
+        }
+
+        .comments-section {
+            position: absolute;
+            width: 741px;
+            height: 975px;
+            left: 1059px;
+            top: 199px;
+            background: rgba(248, 243, 254, 0.65);
+            border: 0.3px solid #DDD2FF;
+            border-radius: 10px;
+            padding: 40px;
+        }
+
+        .comment-form {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 18px 20px 15px;
+            gap: 30px;
+            width: 651px;
+            background: #FFFFFF;
+            border: 0.3px solid #ADB5BD;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .comment-input {
+            width: 100%;
+            border: none;
+            font-family: 'FiraGO';
+            font-weight: 350;
+            font-size: 14px;
+            color: #898989;
+            resize: none;
+            outline: none;
+        }
+
+        .comment-actions {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .submit-comment {
+            padding: 8px 20px;
+            background: #8338EC;
+            border-radius: 20px;
+            border: none;
+            color: #FFFFFF;
+            font-family: 'FiraGO';
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .comments-title {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 30px;
+        }
+
+        .comments-title h2 {
+            font-family: 'FiraGO';
+            font-weight: 500;
+            font-size: 20px;
+            color: #000000;
+            margin: 0;
+        }
+
+        .comments-count {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            width: 30px;
+            height: 22px;
+            background: #8338EC;
+            border-radius: 30px;
+            color: #FFFFFF;
+            font-family: 'FiraGO';
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .comment {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .comment-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 40px;
+            background-size: cover;
+        }
+
+        .comment-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .comment-author {
+            font-family: 'FiraGO';
+            font-weight: 500;
+            font-size: 18px;
+            color: #212529;
+        }
+
+        .comment-text {
+            font-family: 'FiraGO';
+            font-weight: 350;
+            font-size: 16px;
+            color: #343A40;
+        }
+
+        .reply-button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 0;
+            font-family: 'FiraGO';
+            font-size: 12px;
+            color: #8338EC;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="assets/momentum-logo.png" alt="Momentum" style="height: 38px;">
+
+            </div>
+            <div class="header-right">
+                <button class="user-btn" onclick="openModal()"><span>თანამშრომლის შექმნა</span></button>
+                <button class="add-btn" onclick="location.href='task.html'">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 5L10 15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M15 10L5 10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>შექმენი ახალი დავალება</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="task-details-content">
+            <div class="task-meta">
+                <div class="task-badges">
+                    <div class="priority-badge">
+                        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="5" width="18" height="2" rx="1" fill="#FFBE0B"/>
+                            <rect x="0" y="13" width="18" height="2" rx="1" fill="#FFBE0B"/>
+                        </svg>
+                        <span>საშუალო</span>
+                    </div>
+                    <div class="department-badge">დიზაინი</div>
+                </div>
+                <h1 class="task-title">Redberry-ს საიტის ლენდინგის დიზაინი</h1>
+            </div>
+            <p class="task-description">
+                მიზანია რომ შეიქმნას თანამედროვე, სუფთა და ფუნქციონალური დიზაინი, რომელიც უზრუნველყოფს მარტივ ნავიგაციას და მკაფიო ინფორმაციის გადაცემას. დიზაინი უნდა იყოს ადაპტირებადი (responsive), გამორჩეული ვიზუალით, მინიმალისტური სტილით და ნათელი ტიპოგრაფიით.
+            </p>
+        </div>
+
+        <div class="task-details-section">
+            <h2 class="section-title">დავალების დეტალები</h2>
+            <div class="details-grid">
+                <div class="details-row">
+                    <div class="details-label">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z" stroke="#474747" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="#474747" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        სტატუსი
+                    </div>
+                    <div class="details-value">საშუალო</div>
+                </div>
+                <div class="details-row">
+                    <div class="details-label">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="4" stroke="#474747" stroke-width="2"/>
+                            <path d="M4 20C4 17.2386 7.58172 15 12 15C16.4183 15 20 17.2386 20 20" stroke="#474747" stroke-width="2"/>
+                        </svg>
+                        თანამშრომელი
+                    </div>
+                    <div class="details-value">
+                        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                            <span style="font-size: 11px; color: #474747;">დიზაინის დეპარტამენტი</span>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-top: 6px;">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="ელაია" style="width: 32px; height: 32px; border-radius: 50%;">
+                                <span>ელაია ბაგრატიონი</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="details-row">
+                    <div class="details-label">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="4" width="18" height="16" rx="2" stroke="#474747" stroke-width="2"/>
+                            <path d="M16 2V6" stroke="#474747" stroke-width="2"/>
+                            <path d="M8 2V6" stroke="#474747" stroke-width="2"/>
+                            <path d="M3 10H21" stroke="#474747" stroke-width="2"/>
+                        </svg>
+                        დავალების ვადა
+                    </div>
+                    <div class="details-value">ორშ - 02/2/2025</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-section">
+            <div class="comment-form">
+                <textarea class="comment-input" placeholder="დაწერე კომენტარი" rows="2"></textarea>
+                <div class="comment-actions">
+                    <button class="submit-comment">Button</button>
+                </div>
+            </div>
+
+            <div class="comments-title">
+                <h2>კომენტარები</h2>
+                <div class="comments-count">3</div>
+            </div>
+
+            <div class="comments-list">
+                <div class="comment">
+                    <img class="comment-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="ემილია">
+                    <div class="comment-content">
+                        <span class="comment-author">ემილია მორგანი</span>
+                        <p class="comment-text">დიზაინი სუფთად ჩანს, მაგრამ კოდირებისას მნიშვნელოვანი იქნება, რომ ელემენტებს ჰქონდეს შესაბამისი რეზოლუცია.</p>
+                        <button class="reply-button">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.33333 7L2 10.3333L5.33333 13.6667" stroke="#8338EC" stroke-width="1.5"/>
+                                <path d="M2 10.3333H10.6667C12.8758 10.3333 14.6667 8.54243 14.6667 6.33333V6.33333C14.6667 4.12424 12.8758 2.33333 10.6667 2.33333" stroke="#8338EC" stroke-width="1.5"/>
+                            </svg>
+                            უპასუხე
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="userModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()"></div>
+            <div class="modal-body">
+                <div class="modal-form">
+                    <h2 class="modal-title">თანამშრომლის დამატება</h2>
+                    <div class="form-fields">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label class="label-text required">სახელი</label>
+                                </div>
+                                <div class="input-container">
+                                    <input type="text" class="input-field" id="firstName" placeholder="">
+                                    <div class="validation-container">
+                                        <div class="validation-item">
+                                            <span class="validation-indicator"></span>
+                                            <span class="validation-text">მინიმუმ 2 სიმბოლო</span>
+                                        </div>
+                                        <div class="validation-item">
+                                            <span class="validation-indicator"></span>
+                                            <span class="validation-text">მაქსიმუმ 255 სიმბოლო</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label class="label-text required">გვარი</label>
+                                </div>
+                                <div class="input-container">
+                                    <input type="text" class="input-field" id="lastName" placeholder="">
+                                    <div class="validation-container">
+                                        <div class="validation-item">
+                                            <span class="validation-indicator"></span>
+                                            <span class="validation-text">მინიმუმ 2 სიმბოლო</span>
+                                        </div>
+                                        <div class="validation-item">
+                                            <span class="validation-indicator"></span>
+                                            <span class="validation-text">მაქსიმუმ 255 სიმბოლო</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="photo-upload">
+                            <div class="form-label">
+                                <label class="label-text required">ავატარი</label>
+                            </div>
+                            <div class="upload-container" id="dropZone">
+                                <div class="avatar-preview" id="avatarPreview" style="display: none;">
+                                    <img src="" alt="Employee avatar" id="previewImage">
+                                    <div class="avatar-delete" id="removeAvatar">
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3.5 3.5L10.5 10.5" stroke="#6C757D" stroke-width="1.5" stroke-linecap="round"/>
+                                            <path d="M3.5 10.5L10.5 3.5" stroke="#6C757D" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <input type="file" id="avatarUpload" style="display: none;" accept="image/*">
+                                <div id="uploadPrompt" style="text-align: center; cursor: pointer;">
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 8.33325V31.6666" stroke="#CED4DA" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M8.33331 20H31.6666" stroke="#CED4DA" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    <p style="color: #6C757D; margin-top: 10px;">დააჭირეთ ან ჩააგდეთ ფოტო</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group department-group">
+                            <div class="form-label">
+                                <label class="label-text required">დეპარტამენტი</label>
+                            </div>
+                            <div class="input-container">
+                                <select class="input-field" id="department">
+                                    <option value="" disabled selected></option>
+                                    <option value="design">დიზაინი</option>
+                                    <option value="dev">დეველოპმენტი</option>
+                                    <option value="marketing">მარკეტინგი</option>
+                                    <option value="hr">HR</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="cancel-btn" onclick="closeModal()">გაუქმება</button>
+                    <button class="submit-btn">დაამატე თანამშრომელი</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+    function openModal() {
+        const modal = document.getElementById('userModal');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('userModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('userModal');
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const taskId = urlParams.get('id');
+            
+            if (!taskId) {
+                console.error('No task ID provided');
+                return;
+            }
+            
+            const mockTasks = {
+                "1": {
+                    id: "1",
+                    title: "Redberry-ს საიტის ლენდინგის დიზაინი",
+                    description: "მიზანია რომ შეიქმნას თანამედროვე, სუფთა და ფუნქციონალური დიზაინი, რომელიც უზრუნველყოფს მარტივ ნავიგაციას და მკაფიო ინფორმაციის გადაცემას. დიზაინი უნდა იყოს ადაპტირებადი (responsive), გამორჩეული ვიზუალით, მინიმალისტური სტილით და ნათელი ტიპოგრაფიით.",
+                    priority: "high",
+                    department: "design",
+                    status: "to-do",
+                    assignee: {
+                        name: "ელაია ბაგრატიონი",
+                        department: "design",
+                        avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+                    },
+                    deadline: "2025-02-02",
+                    comments: [
+                        {
+                            author: {
+                                name: "ემილია მორგანი",
+                                avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+                            },
+                            text: "დიზაინი სუფთად ჩანს, მაგრამ კოდირებისას მნიშვნელოვანი იქნება, რომ ელემენტებს ჰქონდეს შესაბამისი რეზოლუცია."
+                        }
+                    ]
+                },
+                "2": {
+                    id: "2",
+                    title: "ფუნქციონალის განახლება",
+                    description: "ფილტრების სექციის განახლება და ახალი ფუნქციონალის დამატება პროექტის მოთხოვნების შესაბამისად. საჭიროა ახალი ფილტრების დამატება და არსებული ფილტრების ოპტიმიზაცია.",
+                    priority: "medium",
+                    department: "dev",
+                    status: "in-progress",
+                    assignee: {
+                        name: "გიორგი დათუაშვილი",
+                        department: "dev",
+                        avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+                    },
+                    deadline: "2025-02-15",
+                    comments: [
+                        {
+                            author: {
+                                name: "ნინო კვარაცხელია",
+                                avatar: "https://randomuser.me/api/portraits/women/22.jpg"
+                            },
+                            text: "ფილტრების ლოგიკა კარგად არის გაწერილი, თუმცა საჭიროა დამატებითი ტესტირება მობილურ ვერსიაზე."
+                        }
+                    ]
+                }
+            };
+
+            try {
+                const task = mockTasks[taskId];
+                
+                if (!task) {
+                    throw new Error('Task not found');
+                }
+                
+                document.querySelector('.priority-badge span').textContent = 
+                    task.priority === 'high' ? 'მაღალი' : 
+                    task.priority === 'medium' ? 'საშუალო' : 'დაბალი';
+                
+                const priorityBadge = document.querySelector('.priority-badge');
+                const prioritySvg = priorityBadge.querySelector('svg');
+                
+                if (task.priority === 'high') {
+                    prioritySvg.innerHTML = `
+                        <path d="M8 4L8 12" stroke="#FA4D4D" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 8L8 4L12 8" stroke="#FA4D4D" stroke-width="2" stroke-linecap="round"/>
+                    `;
+                    priorityBadge.style.borderColor = '#FA4D4D';
+                    priorityBadge.style.color = '#FA4D4D';
+                } else if (task.priority === 'medium') {
+                    prioritySvg.innerHTML = `
+                        <rect x="0" y="5" width="18" height="2" rx="1" fill="#FFBE0B"/>
+                        <rect x="0" y="13" width="18" height="2" rx="1" fill="#FFBE0B"/>
+                    `;
+                    priorityBadge.style.borderColor = '#FFBE0B';
+                    priorityBadge.style.color = '#FFBE0B';
+                } else {
+                    prioritySvg.innerHTML = `
+                        <path d="M8 12L8 4" stroke="#08A508" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 8L8 12L4 8" stroke="#08A508" stroke-width="2" stroke-linecap="round"/>
+                    `;
+                    priorityBadge.style.borderColor = '#08A508';
+                    priorityBadge.style.color = '#08A508';
+                }
+                
+                const deptBadge = document.querySelector('.department-badge');
+                deptBadge.textContent = 
+                    task.department === 'design' ? 'დიზაინი' : 
+                    task.department === 'dev' ? 'დეველოპმენტი' : 
+                    task.department === 'marketing' ? 'მარკეტინგი' : 'HR';
+                deptBadge.style.backgroundColor = 
+                    task.department === 'design' ? '#FF66A8' : 
+                    task.department === 'dev' ? '#1AC0C6' :
+                    task.department === 'marketing' ? '#FF7A00' : '#0076F1';
+                
+                document.querySelector('.task-title').textContent = task.title;
+                document.querySelector('.task-description').textContent = task.description;
+                
+                const detailsValues = document.querySelectorAll('.details-value');
+                detailsValues[0].textContent = task.status === 'to-do' ? 'დასაწყები' :
+                                             task.status === 'in-progress' ? 'პროგრესში' :
+                                             task.status === 'testing' ? 'ტესტირება' : 'დასრულებული';
+                
+                const employeeDetails = detailsValues[1].querySelector('div');
+                employeeDetails.innerHTML = `
+                    <span style="font-size: 11px; color: #474747;">${
+                        task.assignee.department === 'design' ? 'დიზაინის დეპარტამენტი' :
+                        task.assignee.department === 'dev' ? 'დეველოპმენტის დეპარტამენტი' :
+                        task.assignee.department === 'marketing' ? 'მარკეტინგის დეპარტამენტი' : 'HR დეპარტამენტი'
+                    }</span>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-top: 6px;">
+                        <img src="${task.assignee.avatar}" alt="${task.assignee.name}" style="width: 32px; height: 32px; border-radius: 50%;">
+                        <span>${task.assignee.name}</span>
+                    </div>
+                `;
+                
+                const deadline = new Date(task.deadline);
+                const days = ['კვი', 'ორშ', 'სამ', 'ოთხ', 'ხუთ', 'პარ', 'შაბ'];
+                const months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                detailsValues[2].textContent = `${days[deadline.getDay()]} - ${deadline.getDate()}/${months[deadline.getMonth()]}/${deadline.getFullYear()}`;
+                
+                const commentsCount = document.querySelector('.comments-count');
+                commentsCount.textContent = task.comments ? task.comments.length : '0';
+                
+                const commentsList = document.querySelector('.comments-list');
+                if (task.comments && task.comments.length > 0) {
+                    commentsList.innerHTML = task.comments.map(comment => `
+                        <div class="comment">
+                            <img class="comment-avatar" src="${comment.author.avatar}" alt="${comment.author.name}">
+                            <div class="comment-content">
+                                <span class="comment-author">${comment.author.name}</span>
+                                <p class="comment-text">${comment.text}</p>
+                                <button class="reply-button">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.33333 7L2 10.3333L5.33333 13.6667" stroke="#8338EC" stroke-width="1.5"/>
+                                        <path d="M2 10.3333H10.6667C12.8758 10.3333 14.6667 8.54243 14.6667 6.33333V6.33333C14.6667 4.12424 12.8758 2.33333 10.6667 2.33333" stroke="#8338EC" stroke-width="1.5"/>
+                                    </svg>
+                                    უპასუხე
+                                </button>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    commentsList.innerHTML = '<p style="text-align: center; color: #6c757d;">კომენტარები არ არის</p>';
+                }
+                
+            } catch (error) {
+                console.error('Error loading task details:', error);
+                document.querySelector('.task-details-content').innerHTML = `
+                    <div style="text-align: center; color: #6c757d; padding: 20px;">
+                        დავალება ვერ მოიძებნა
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html> 

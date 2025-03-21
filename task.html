@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>დაამატე ახალი დავალება | Momentum</title>
+    <link rel="preload" href="https://fonts.gstatic.com/s/fredokaone/v13/k3kUo8kEI-tA1RRcTZGmTlHGCac.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://free.bboxtype.com/embedfonts/?family=FiraGO:400,500" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #FFFFFF;
+        }
+
+        .container {
+            box-sizing: border-box;
+            position: absolute;
+            width: 1684px;
+            height: 958px;
+            left: 118px;
+            top: 206px;
+            background: rgba(251, 249, 255, 0.65);
+            border-radius: 4px;
+        }
+
+        .task-form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 55px;
+            position: absolute;
+            width: 550px;
+            height: 491px;
+            left: 55px;
+            top: 65px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            width: 259px;
+            height: 108px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .form-label {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 6px 0px;
+            width: 75px;
+            height: 31px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .label-text {
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: #343A40;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .required::after {
+            content: "*";
+            width: 8px;
+            height: 8px;
+            margin-left: 4px;
+            color: #343A40;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 4px;
+            width: 550px;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 14px;
+            gap: 10px;
+            width: 550px;
+            height: 45px;
+            background: #FFFFFF;
+            border: 1px solid #DEE2E6;
+            border-radius: 5px;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 17px;
+            color: #0D0F10;
+        }
+
+        .validation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px 1px;
+            gap: 2px;
+            width: 550px;
+            height: 26px;
+        }
+
+        .validation-text {
+            width: 548px;
+            height: 12px;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 350;
+            font-size: 10px;
+            line-height: 12px;
+            color: #6C757D;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 32px;
+            width: 550px;
+            height: 77px;
+            flex: none;
+            order: 2;
+            align-self: stretch;
+            flex-grow: 0;
+        }
+        
+        .form-row .form-group {
+            width: 259px;
+            height: 77px;
+        }
+        
+        .form-row .form-label {
+            width: 111px;
+        }
+
+        .date-picker {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 4px;
+            position: absolute;
+            width: 320px;
+            height: 76px;
+            left: 766px;
+            top: 338px;
+        }
+
+        .date-picker .input-field {
+            width: 318px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 14px;
+            gap: 6px;
+            background: #FFFFFF;
+            border: 1px solid #DEE2E6;
+            border-radius: 5px;
+        }
+
+        .date-picker input::placeholder {
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: -0.0125em;
+            color: #ADB5BD;
+        }
+
+        .submit-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            gap: 10px;
+            width: 208px;
+            height: 42px;
+            background: #8338EC !important;
+            border-radius: 4px;
+            border: none;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            color: #FFFFFF;
+            position: fixed;
+            right: 55px;
+            bottom: 40px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .submit-btn:hover {
+            background: #6423B3 !important;
+        }
+
+        .submit-btn:disabled {
+            background: #8338EC !important;
+            color: #FFFFFF !important;
+            opacity: 1 !important;
+            cursor: pointer;
+        }
+
+        .submit-btn:disabled:hover {
+            background: #8338EC;
+        }
+
+        .page-title {
+            position: absolute;
+            width: 1684px;
+            height: 41px;
+            left: 0px;
+            top: 50px;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 34px;
+            line-height: 41px;
+            color: #212529;
+        }
+
+        .dropdown-field {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 259px;
+            background: #FFFFFF;
+            border: 1px solid #CED4DA;
+            border-radius: 5px;
+            margin-top: 4px;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-item {
+            padding: 14px;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 17px;
+            color: #0D0F10;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background: #F8F9FA;
+        }
+
+        select.input-field {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('assets/arrow-down.svg');
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 14px;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .input-field.dropdown-field {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 14px;
+            gap: 6px;
+            width: 259px;
+            height: 46px;
+            background: #FFFFFF;
+            border: 1px solid #DEE2E6;
+            border-radius: 5px;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+            cursor: pointer;
+        }
+        
+        .right-side-field {
+            position: absolute;
+            left: 766px;
+            width: 550px;
+        }
+        
+        .right-side-field .input-field.dropdown-field {
+            width: 550px;
+        }
+        
+        .right-side-field .dropdown-content {
+            width: 550px;
+        }
+        
+        .right-side-field .form-label {
+            width: 125px;
+        }
+        
+        .form-group.assignee .form-label {
+            width: 268px;
+        }
+
+        .calendar-dropdown {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            gap: 22px;
+            position: absolute;
+            width: 318px;
+            height: 336px;
+            background: #FFFFFF;
+            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            margin-top: 4px;
+        }
+
+        .calendar-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px;
+            width: 286px;
+            height: 20px;
+        }
+
+        .month-selector {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0px;
+            gap: 4px;
+            height: 16px;
+        }
+
+        .month-selector span {
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 16px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .calendar-arrows {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 8px;
+            height: 20px;
+        }
+
+        .arrow-btn {
+            width: 20px;
+            height: 20px;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .calendar-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            width: 224px;
+        }
+
+        .calendar-days {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 0px;
+            width: 224px;
+            height: 32px;
+            margin-bottom: 8px;
+        }
+
+        .calendar-days div {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #0D0F10;
+        }
+
+        .calendar-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 32px);
+            gap: 0px;
+            width: 224px;
+        }
+
+        .date-tile {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+            width: 32px;
+            height: 32px;
+            border-radius: 2px;
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: #0D0F10;
+            cursor: pointer;
+        }
+
+        .date-tile.other-month {
+            color: #6C757D;
+        }
+
+        .date-tile.selected {
+            background: #8338EC;
+            border: 2px solid #8338EC;
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        .date-tile:hover:not(.selected) {
+            background: rgba(131, 56, 236, 0.1);
+        }
+
+        .calendar-actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 16px;
+            width: 286px;
+            height: 16px;
+        }
+
+        .calendar-action-btn {
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 16px;
+            text-align: center;
+            color: #8338EC;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+        <div class="header">
+            <div class="logo">
+                <img src="assets/momentum-logo.png" alt="Momentum" style="height: 38px;">
+            </div>
+            <div class="header-right">
+            <button class="user-btn" onclick="openModal()">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="6" r="4" stroke="#212529" stroke-width="1.5"/>
+                    <path d="M3 18C3 14.6863 6.13401 12 10 12C13.866 12 17 14.6863 17 18" stroke="#212529" stroke-width="1.5"/>
+                </svg>
+                <span>თანამშრომლის შექმნა</span>
+            </button>
+            <button class="add-btn" onclick="location.href='task.html'">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 5L10 15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M15 10L5 10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>შექმენი ახალი დავალება</span>
+            </button>
+            </div>
+        </div>
+        
+    <h1 class="page-title">შექმენი ახალი დავალება</h1>
+
+    <div class="container">
+        <form class="task-form">
+            <div class="form-group">
+                <div class="form-label">
+                    <span class="label-text required">სათაური</span>
+                </div>
+                <div class="input-container">
+                    <input type="text" class="input-field" placeholder="">
+                    <div class="validation-container">
+                        <span class="validation-text">მინიმუმ 2 სიმბოლო</span>
+                        <span class="validation-text">მაქსიმუმ 255 სიმბოლო</span>
+                    </div>
+                </div>
+            </div>
+
+                <div class="form-group">
+                <div class="form-label">
+                    <span class="label-text">აღწერა</span>
+                </div>
+                <div class="input-container">
+                    <textarea class="input-field" style="height: 133px;" placeholder=""></textarea>
+                    <div class="validation-container">
+                        <span class="validation-text">მინიმუმ 2 სიმბოლო</span>
+                        <span class="validation-text">მაქსიმუმ 255 სიმბოლო</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row" style="position: absolute; top: 426px;">
+                <div class="form-group" style="height: 77px;">
+                    <div class="form-label">
+                        <span class="label-text required">პრიორიტეტი</span>
+                    </div>
+                    <div class="input-container">
+                        <div class="input-field dropdown-field">
+                            <span style="flex-grow: 1; font-family: 'FiraGO'; font-weight: 300; font-size: 14px; line-height: 17px; color: #0D0F10;"></span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none;">
+                                <path d="M11.0833 5.25L7 9.33333L2.91667 5.25" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="dropdown-content" style="display: none;">
+                            <div class="dropdown-item">მაღალი</div>
+                            <div class="dropdown-item">საშუალო</div>
+                            <div class="dropdown-item">დაბალი</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="height: 77px;">
+                    <div class="form-label">
+                        <span class="label-text required">სტატუსი</span>
+                    </div>
+                    <div class="input-container">
+                        <div class="input-field dropdown-field">
+                            <span style="flex-grow: 1; font-family: 'FiraGO'; font-weight: 300; font-size: 14px; line-height: 17px; color: #0D0F10;"></span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none;">
+                                <path d="M11.0833 5.25L7 9.33333L2.91667 5.25" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="dropdown-content" style="display: none;">
+                            <div class="dropdown-item">დასაწყები</div>
+                            <div class="dropdown-item">პროგრესში</div>
+                            <div class="dropdown-item">დასრულებული</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+            <div class="form-group right-side-field" style="top: 0;">
+                        <div class="form-label">
+                    <span class="label-text required">დეპარტამენტი</span>
+                        </div>
+                        <div class="input-container">
+                    <div class="input-field dropdown-field">
+                        <span style="flex-grow: 1;"></span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none;">
+                            <path d="M11.0833 5.25L7 9.33333L2.91667 5.25" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="dropdown-content" style="display: none;">
+                        <div class="dropdown-item">დიზაინი</div>
+                        <div class="dropdown-item">დეველოპმენტი</div>
+                        <div class="dropdown-item">მარკეტინგი</div>
+                        <div class="dropdown-item">HR</div>
+                    </div>
+                        </div>
+                    </div>
+                    
+            <div class="form-group right-side-field assignee" style="top: 163px;">
+                        <div class="form-label">
+                    <span class="label-text" style="color: #ADB5BD;">პასუხისმგებელი თანამშრომელი</span>
+                        </div>
+                        <div class="input-container">
+                    <div class="input-field dropdown-field">
+                        <span style="flex-grow: 1;"></span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex: none;">
+                            <path d="M11.0833 5.25L7 9.33333L2.91667 5.25" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        </div>
+                    <div class="dropdown-content" style="display: none;">
+                        <div class="dropdown-item">გიორგი</div>
+                        <div class="dropdown-item">ნინო</div>
+                        <div class="dropdown-item">დავითი</div>
+                        </div>
+                    </div>
+                </div>
+                
+            <div class="date-picker" style="top: 426px;">
+                        <div class="form-label">
+                    <span class="label-text">დედლაინი</span>
+                </div>
+                <div class="input-field" id="datePickerField">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="cursor: pointer;">
+                        <path d="M12.6667 2.66667H3.33333C2.97971 2.66667 2.64057 2.80714 2.39052 3.05719C2.14048 3.30724 2 3.64638 2 4V13.3333C2 13.687 2.14048 14.0261 2.39052 14.2761C2.64057 14.5262 2.97971 14.6667 3.33333 14.6667H12.6667C13.0203 14.6667 13.3594 14.5262 13.6095 14.2761C13.8595 14.0261 14 13.687 14 13.3333V4C14 3.64638 13.8595 3.30724 13.6095 3.05719C13.3594 2.80714 13.0203 2.66667 12.6667 2.66667Z" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.6667 1.33333V4" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.33333 1.33333V4" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 6.66667H14" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="text" id="dateInput" placeholder="DD/MM/YYYY" readonly style="border: none; background: none; width: 268px; height: 20px; font-family: 'FiraGO'; font-style: normal; font-weight: 300; font-size: 14px; line-height: 20px; letter-spacing: -0.0125em; color: #ADB5BD; flex: none; order: 1; flex-grow: 0; z-index: 0; cursor: pointer;">
+                </div>
+                <div id="calendarDropdown" class="calendar-dropdown" style="display: none;">
+                    <div class="calendar-header">
+                        <div class="month-selector">
+                            <span id="currentMonth"></span>
+                            <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 0.5L4 3.5L7 0.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="calendar-arrows">
+                            <button class="arrow-btn" id="prevMonth">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M12 15L7 10L12 5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button class="arrow-btn" id="nextMonth">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M8 5L13 10L8 15" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-days">
+                            <div>ო</div>
+                            <div>ს</div>
+                            <div>ო</div>
+                            <div>ხ</div>
+                            <div>პ</div>
+                            <div>შ</div>
+                            <div>კ</div>
+                        </div>
+                        <div class="calendar-dates" id="calendarDates"></div>
+                    </div>
+                    <div class="calendar-actions">
+                        <button class="calendar-action-btn" id="clearDate">გასუფთავება</button>
+                        <button class="calendar-action-btn" id="selectToday">დღეს</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="position: fixed; width: 208px; height: 42px; right: 55px; bottom: 40px; z-index: 100;">
+                <button type="submit" class="submit-btn">დავალების შექმნა</button>
+            </div>
+        </form>
+                </div>
+                
+    <div id="userModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()"></div>
+            <div class="modal-body">
+                <div class="modal-form">
+                    <h2 class="modal-title">თანამშრომლის დამატება</h2>
+                    <div class="form-fields">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label class="label-text required">სახელი</label>
+                                </div>
+                                <div class="input-container">
+                                    <input type="text" class="input-field" id="firstName" placeholder="">
+                                    <div class="validation-container">
+                                        <div class="validation-item">
+                                            <span class="validation-indicator"></span>
+                                            <span class="validation-text">მინიმუმ 2 სიმბოლო</span>
+                                        </div>
+                                        <div class="validation-item">
+                                            <span class="validation-indicator"></span>
+                                            <span class="validation-text">მაქსიმუმ 255 სიმბოლო</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label class="label-text required">გვარი</label>
+                                </div>
+                                <div class="input-container">
+                                    <input type="text" class="input-field" id="lastName" placeholder="">
+                                    <div class="validation-container">
+                                        <div class="validation-item">
+                                            <span class="validation-indicator"></span>
+                                            <span class="validation-text">მინიმუმ 2 სიმბოლო</span>
+                                        </div>
+                                        <div class="validation-item">
+                                            <span class="validation-indicator"></span>
+                                            <span class="validation-text">მაქსიმუმ 255 სიმბოლო</span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                        <div class="photo-upload">
+                        <div class="form-label">
+                                <label class="label-text required">ავატარი</label>
+                            </div>
+                            <div class="upload-container" id="dropZone">
+                                <div class="avatar-preview" id="avatarPreview" style="display: none;">
+                                    <img src="" alt="Employee avatar" id="previewImage">
+                                    <div class="avatar-delete" id="removeAvatar">
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3.5 3.5L10.5 10.5" stroke="#6C757D" stroke-width="1.5" stroke-linecap="round"/>
+                                            <path d="M3.5 10.5L10.5 3.5" stroke="#6C757D" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <input type="file" id="avatarUpload" style="display: none;" accept="image/*">
+                                <div id="uploadPrompt" style="text-align: center; cursor: pointer;">
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 8.33325V31.6666" stroke="#CED4DA" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M8.33331 20H31.6666" stroke="#CED4DA" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    <p style="color: #6C757D; margin-top: 10px;">დააჭირეთ ან ჩააგდეთ ფოტო</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label class="label-text required">დეპარტამენტი</label>
+                        </div>
+                        <div class="input-container">
+                                <select class="input-field" id="department">
+                                    <option value="" disabled selected></option>
+                                    <option value="design">დიზაინი</option>
+                                    <option value="dev">დეველოპმენტი</option>
+                                    <option value="marketing">მარკეტინგი</option>
+                                    <option value="hr">HR</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="cancel-btn" onclick="closeModal()">გაუქმება</button>
+                    <button class="submit-btn">დაამატე თანამშრომელი</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+    function openModal() {
+        const modal = document.getElementById('userModal');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('userModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('userModal');
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    });
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButton = document.getElementById('submitTask');
+            
+            submitButton.addEventListener('click', function() {
+                const title = document.getElementById('taskTitle').value;
+                const description = document.getElementById('taskDescription').value;
+                const department = document.getElementById('taskDepartment').value;
+                const priority = document.getElementById('taskPriority').value;
+                const assignee = document.getElementById('taskAssignee').value;
+                const deadline = document.getElementById('taskDeadline').value;
+                
+                if (!title || !description || !department || !priority || !assignee || !deadline) {
+                    alert('გთხოვთ შეავსოთ ყველა აუცილებელი ველი');
+                    return;
+                }
+                
+                alert('დავალება წარმატებით შეიქმნა!');
+                
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('dateInput');
+            const datePickerField = document.getElementById('datePickerField');
+            const calendarDropdown = document.getElementById('calendarDropdown');
+            const currentMonthElement = document.getElementById('currentMonth');
+            const calendarDates = document.getElementById('calendarDates');
+            const prevMonthBtn = document.getElementById('prevMonth');
+            const nextMonthBtn = document.getElementById('nextMonth');
+            const clearDateBtn = document.getElementById('clearDate');
+            const selectTodayBtn = document.getElementById('selectToday');
+
+            let currentDate = new Date();
+            let selectedDate = null;
+
+            const monthNamesGe = [
+                'იანვარი', 'თებერვალი', 'მარტი', 'აპრილი', 'მაისი', 'ივნისი',
+                'ივლისი', 'აგვისტო', 'სექტემბერი', 'ოქტომბერი', 'ნოემბერი', 'დეკემბერი'
+            ];
+
+            function toggleCalendar(e) {
+                e.preventDefault(); 
+                calendarDropdown.style.display = calendarDropdown.style.display === 'none' ? 'flex' : 'none';
+                updateCalendar();
+            }
+
+            function updateCalendar() {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+                
+                currentMonthElement.textContent = `${monthNamesGe[month]} ${year}`;
+                
+                const firstDay = new Date(year, month, 1);
+                const lastDay = new Date(year, month + 1, 0);
+                const daysInMonth = lastDay.getDate();
+                const startingDay = firstDay.getDay();
+                
+                calendarDates.innerHTML = '';
+                
+                const prevMonthLastDay = new Date(year, month, 0).getDate();
+                for (let i = startingDay - 1; i >= 0; i--) {
+                    const dateDiv = document.createElement('div');
+                    dateDiv.className = 'date-tile other-month';
+                    dateDiv.textContent = prevMonthLastDay - i;
+                    calendarDates.appendChild(dateDiv);
+                }
+                
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const dateDiv = document.createElement('div');
+                    dateDiv.className = 'date-tile';
+                    dateDiv.textContent = i;
+                    
+                    if (selectedDate && 
+                        selectedDate.getDate() === i && 
+                        selectedDate.getMonth() === month && 
+                        selectedDate.getFullYear() === year) {
+                        dateDiv.classList.add('selected');
+                    }
+                    
+                    dateDiv.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        selectDate(new Date(year, month, i));
+                    });
+                    calendarDates.appendChild(dateDiv);
+                }
+                
+                const totalDays = calendarDates.children.length;
+                let nextMonthDay = 1;
+                while (totalDays + nextMonthDay <= 42) {
+                    const dateDiv = document.createElement('div');
+                    dateDiv.className = 'date-tile other-month';
+                    dateDiv.textContent = nextMonthDay;
+                    calendarDates.appendChild(dateDiv);
+                    nextMonthDay++;
+                }
+            }
+
+            function selectDate(date) {
+                selectedDate = date;
+                const formattedDate = formatDate(date);
+                dateInput.value = formattedDate;
+                dateInput.style.color = '#0D0F10';
+                calendarDropdown.style.display = 'none';
+                updateCalendar();
+                event.preventDefault(); 
+            }
+
+            function formatDate(date) {
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}/${month}/${year}`;
+            }
+
+            datePickerField.addEventListener('click', toggleCalendar);
+            dateInput.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleCalendar(e);
+            });
+
+            prevMonthBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent form submission
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                updateCalendar();
+            });
+
+            nextMonthBtn.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                updateCalendar();
+            });
+
+            clearDateBtn.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                dateInput.value = '';
+                dateInput.style.color = '#ADB5BD';
+                calendarDropdown.style.display = 'none';
+            });
+
+            selectTodayBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentDate = new Date();
+                selectDate(new Date());
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!dateInput.contains(e.target) && 
+                    !calendarDropdown.contains(e.target)) {
+                    calendarDropdown.style.display = 'none';
+                }
+            });
+
+            updateCalendar();
+        });
+    </script>
+</body>
+</html> 

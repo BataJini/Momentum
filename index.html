@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum</title>
+    <link rel="preload" href="https://fonts.gstatic.com/s/fredokaone/v13/k3kUo8kEI-tA1RRcTZGmTlHGCac.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://free.bboxtype.com/embedfonts/?family=FiraGO:400,500" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="assets/momentum-logo.png" alt="Momentum" style="height: 38px;">
+            </div>
+            <div class="header-right">
+                <button class="user-btn" onclick="openModal()">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="6" r="4" stroke="#212529" stroke-width="1.5"/>
+                        <path d="M3 18C3 14.6863 6.13401 12 10 12C13.866 12 17 14.6863 17 18" stroke="#212529" stroke-width="1.5"/>
+                    </svg>
+                    <span>თანამშრომლის შექმნა</span>
+                </button>
+                <button class="add-btn" onclick="location.href='task.html'">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 5L10 15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M15 10L5 10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>შექმენი ახალი დავალება</span>
+                </button>
+            </div>
+        </div>
+        
+        <h1 class="page-title">დავალებების გვერდი</h1>
+        
+        <!-- Modal Overlay -->
+        <div id="userModal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-close" onclick="closeModal()"></div>
+                <div class="modal-body">
+                    <div class="modal-form">
+                        <h2 class="modal-title">თანამშრომლის დამატება</h2>
+                        <div class="form-fields">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label class="label-text required">სახელი</label>
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="text" class="input-field" id="firstName" placeholder="">
+                                        <div class="validation-container">
+                                            <div class="validation-item">
+                                                <span class="validation-indicator"></span>
+                                                <span class="validation-text">მინიმუმ 2 სიმბოლო</span>
+                                            </div>
+                                            <div class="validation-item">
+                                                <span class="validation-indicator"></span>
+                                                <span class="validation-text">მაქსიმუმ 255 სიმბოლო</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label class="label-text required">გვარი</label>
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="text" class="input-field" id="lastName" placeholder="">
+                                        <div class="validation-container">
+                                            <div class="validation-item">
+                                                <span class="validation-indicator"></span>
+                                                <span class="validation-text">მინიმუმ 2 სიმბოლო</span>
+                                            </div>
+                                            <div class="validation-item">
+                                                <span class="validation-indicator"></span>
+                                                <span class="validation-text">მაქსიმუმ 255 სიმბოლო</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="photo-upload">
+                                <div class="form-label">
+                                    <label class="label-text required">ავატარი</label>
+                                </div>
+                                <div class="upload-container" id="dropZone">
+                                    <div class="avatar-preview" id="avatarPreview" style="display: none;">
+                                        <img src="" alt="Employee avatar" id="previewImage">
+                                        <div class="avatar-delete" id="removeAvatar">
+                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.5 3.5L10.5 10.5" stroke="#6C757D" stroke-width="1.5" stroke-linecap="round"/>
+                                                <path d="M3.5 10.5L10.5 3.5" stroke="#6C757D" stroke-width="1.5" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="avatarUpload" style="display: none;" accept="image/*">
+                                    <div id="uploadPrompt" style="text-align: center; cursor: pointer;">
+                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 8.33325V31.6666" stroke="#CED4DA" stroke-width="2" stroke-linecap="round"/>
+                                            <path d="M8.33331 20H31.6666" stroke="#CED4DA" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                        <p style="color: #6C757D; margin-top: 10px;">დააჭირეთ ან ჩააგდეთ ფოტო</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label class="label-text required">დეპარტამენტი</label>
+                                </div>
+                                <div class="input-container">
+                                    <select class="input-field" id="department">
+                                        <option value="" disabled selected></option>
+                                        <option value="design">დიზაინი</option>
+                                        <option value="dev">დეველოპმენტი</option>
+                                        <option value="marketing">მარკეტინგი</option>
+                                        <option value="hr">HR</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="cancel-btn" onclick="closeModal()">გაუქმება</button>
+                        <button class="submit-btn">დაამატე თანამშრომელი</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <div class="multi-select" id="department-select">
+                <div class="multi-select-header">
+                    დეპარტამენტი
+                    <span class="dropdown-icon"></span>
+                </div>
+                <div class="multi-select-dropdown">
+                    <div class="multi-select-options">
+                        <div class="multi-select-option" data-value="design">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="option-text">დიზაინი</span>
+                        </div>
+                        <div class="multi-select-option" data-value="dev">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="option-text">დეველოპმენტი</span>
+                        </div>
+                        <div class="multi-select-option" data-value="marketing">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="option-text">მარკეტინგი</span>
+                        </div>
+                        <div class="multi-select-option" data-value="hr">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="option-text">HR</span>
+                        </div>
+                    </div>
+                    <div class="multi-select-footer">
+                        <button class="apply-filter-btn">არჩევა</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="multi-select" id="priority-select">
+                <div class="multi-select-header">
+                    პრიორიტეტი
+                    <span class="dropdown-icon"></span>
+                </div>
+                <div class="multi-select-dropdown">
+                    <div class="multi-select-options">
+                        <div class="multi-select-option" data-value="high">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="option-text">მაღალი</span>
+                        </div>
+                        <div class="multi-select-option" data-value="medium">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="option-text">საშუალო</span>
+                        </div>
+                        <div class="multi-select-option" data-value="low">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="option-text">დაბალი</span>
+                        </div>
+                    </div>
+                    <div class="multi-select-footer">
+                        <button class="apply-filter-btn">არჩევა</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="multi-select" id="employee-select">
+                <div class="multi-select-header">
+                    თანამშრომელი
+                    <span class="dropdown-icon"></span>
+                </div>
+                <div class="multi-select-dropdown">
+                    <div class="multi-select-options">
+                        <div class="multi-select-option" data-value="employee1">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="employee-info">
+                                <img class="employee-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="გიორგი">
+                                <span class="option-text">გიორგი</span>
+                            </div>
+                        </div>
+                        <div class="multi-select-option" data-value="employee2">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="employee-info">
+                                <img class="employee-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="ნინო">
+                                <span class="option-text">ნინო</span>
+                            </div>
+                        </div>
+                        <div class="multi-select-option" data-value="employee3">
+                            <div class="checkbox">
+                                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4 7L10 1" stroke="#8338EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="employee-info">
+                                <img class="employee-avatar" src="https://randomuser.me/api/portraits/men/56.jpg" alt="დავითი">
+                                <span class="option-text">დავითი</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="multi-select-footer">
+                        <button class="apply-filter-btn">არჩევა</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="selected-filters">
+            <div class="selected-filters-container">
+                <!-- Selected filter tags will be added here dynamically -->
+            </div>
+            <button class="clear-all">გასუფთავება</button>
+        </div>
+        
+        <div class="status-tabs">
+            <div class="status-tab to-do"><span>დასაწყები</span></div>
+            <div class="status-tab in-progress"><span>პროგრესში</span></div>
+            <div class="status-tab testing"><span>მზად ტესტირებისთვის</span></div>
+            <div class="status-tab done"><span>დასრულებული</span></div>
+        </div>
+        
+        <div class="status-frames-container">
+            <div class="status-frame">
+                <a href="task-details.html?id=1" class="task-card">
+                    <div class="task-meta">
+                        <div class="task-info">
+                            <div class="task-priority high">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 4L8 12" stroke="#FA4D4D" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M4 8L8 4L12 8" stroke="#FA4D4D" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                მაღალი
+                            </div>
+                            <div class="department-tag design">დიზაინი</div>
+                        </div>
+                        <div class="task-date">31 იანვ, 2022</div>
+                    </div>
+                    <div class="task-content">
+                        <h3 class="task-title">Redberry-ს საიტის ლენდინგის დიზაინი</h3>
+                        <p class="task-description">შექმენი საიტის მთავარი გვერდი, რომელიც მოიცავს მთავარ სექციებს, ნავიგაციას.</p>
+                    </div>
+                    <div class="task-footer">
+                        <div class="task-assignee">
+                            <div class="assignee-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg')"></div>
+                        </div>
+                        <div class="task-comments">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.444 14.3333C18.444 14.7845 18.2648 15.217 17.9468 15.5345C17.6288 15.8519 17.1955 16.03 16.7434 16.03H7.12208L3.72217 19.42V6.41992C3.72217 5.96862 3.90112 5.53608 4.21898 5.21843C4.53683 4.90079 4.97001 4.7222 5.42217 4.7222H16.7434C17.1955 4.7222 17.6288 4.90033 17.9468 5.21773C18.2648 5.53514 18.444 5.96759 18.444 6.41881V14.3333Z" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>8</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="status-frame">
+                <a href="task-details.html?id=2" class="task-card">
+                    <div class="task-meta">
+                        <div class="task-info">
+                            <div class="task-priority medium">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="5.5" width="8" height="2" rx="1" fill="#FFBE0B"/>
+                                    <rect x="4" y="9.5" width="8" height="2" rx="1" fill="#FFBE0B"/>
+                                </svg>
+                                საშუალო
+                            </div>
+                            <div class="department-tag dev">დეველოპმენტი</div>
+                        </div>
+                        <div class="task-date">05 თებ, 2022</div>
+                    </div>
+                    <div class="task-content">
+                        <h3 class="task-title">ფუნქციონალის განახლება</h3>
+                        <p class="task-description">ფილტრების სექციის განახლება და ახალი ფუნქციონალის დამატება პროექტის მოთხოვნების შესაბამისად.</p>
+                    </div>
+                    <div class="task-footer">
+                        <div class="task-assignee">
+                            <div class="assignee-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg')"></div>
+                        </div>
+                        <div class="task-comments">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.444 14.3333C18.444 14.7845 18.2648 15.217 17.9468 15.5345C17.6288 15.8519 17.1955 16.03 16.7434 16.03H7.12208L3.72217 19.42V6.41992C3.72217 5.96862 3.90112 5.53608 4.21898 5.21843C4.53683 4.90079 4.97001 4.7222 5.42217 4.7222H16.7434C17.1955 4.7222 17.6288 4.90033 17.9468 5.21773C18.2648 5.53514 18.444 5.96759 18.444 6.41881V14.3333Z" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>8</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="status-frame">
+                <a href="task-details.html?id=3" class="task-card">
+                    <div class="task-meta">
+                        <div class="task-info">
+                            <div class="task-priority low">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 12L8 4" stroke="#08A508" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M12 8L8 12L4 8" stroke="#08A508" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                დაბალი
+                            </div>
+                            <div class="department-tag marketing">მარკეტინგი</div>
+                        </div>
+                        <div class="task-date">15 თებ, 2022</div>
+                    </div>
+                    <div class="task-content">
+                        <h3 class="task-title">სოციალური მედიის კამპანია</h3>
+                        <p class="task-description">მოამზადე Facebook და Instagram კამპანიის მასალები ახალი პროდუქტის გასაშვებად, ყველა საჭირო კონტენტის ჩათვლით.</p>
+                    </div>
+                    <div class="task-footer">
+                        <div class="task-assignee">
+                            <div class="assignee-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/56.jpg')"></div>
+                        </div>
+                        <div class="task-comments">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.444 14.3333C18.444 14.7845 18.2648 15.217 17.9468 15.5345C17.6288 15.8519 17.1955 16.03 16.7434 16.03H7.12208L3.72217 19.42V6.41992C3.72217 5.96862 3.90112 5.53608 4.21898 5.21843C4.53683 4.90079 4.97001 4.7222 5.42217 4.7222H16.7434C17.1955 4.7222 17.6288 4.90033 17.9468 5.21773C18.2648 5.53514 18.444 5.96759 18.444 6.41881V14.3333Z" stroke="#212529" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>5</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
